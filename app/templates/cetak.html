@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">    
+        <div class="col-lg-12">            
+            <div class="panel panel-default">            
+                <div class="panel-heading">                    
+                    Form input
+                </div>
+                <div class="panel panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form action="" method="post" novalidate>
+                                {{ form.hidden_tag() }}
+                                <div class="form-group">
+                                    {{ form.petugas.label(class="control-label") }}                                
+                                    {% if form.petugas.errors %}
+                                        <div class="has-error">
+                                            {{ form.petugas(class="form-control") }}                                        
+                                            {% for error in form.petugas.errors  %}
+                                                <span class="control-label">{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.petugas(class="form-control", placeholder='Nama Petugas') }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.jumlah.label() }}                                
+                                    {% if form.jumlah.errors %}
+                                        <div class="has-error">    
+                                            {{ form.jumlah(class="form-control") }}                                        
+                                            {% for error in form.jumlah.errors  %}
+                                                <span class="control-label">{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.jumlah(class="form-control" , placeholder='Jumlah') }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.tanggal.label() }}                                
+                                    {% if form.tanggal.errors %}
+                                        <div class="has-error">
+                                            {{ form.tanggal(class="form-control") }}                                        
+                                            {% for error in form.tanggal.errors  %}
+                                                <span class="control-label">{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.tanggal(class="form-control", placeholder='ex: 2020') }}
+                                    {% endif %}
+                                </div>                                
+                                <div class="form-group">
+                                    {{ form.submit(class="btn btn-primary") }}
+                                </div>
+                            </form>
+                        </div>
+                    </div>                
+                </div>
+            <!-- end panel-default -->
+            </div> 
+            <!-- end col-lg-6 -->
+        </div>
+    <!-- end row -->
+    </div>
+{% endblock content %}
