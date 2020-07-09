@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+
+{% block cssTables %}
+    <!-- DataTables CSS -->
+    <link href="{{ url_for('static', filename='vendor/datatables-plugins/dataTables.bootstrap.css') }}" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="{{ url_for('static', filename='vendor/datatables-responsive/dataTables.responsive.css') }}" rel="stylesheet">
+{% endblock cssTables %}
+
+{% block content %}
+<div class="row">    
+    <div class="col-lg-12">
+        <div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                    {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>            
+        <div class="panel panel-default">            
+            <div class="panel-heading">
+                Tables
+            </div>
+            <button style="margin: 10px 10px 0 10px;" class="btn btn-info" title="Input data" data-toggle="modal" data-target="#forminput"><i class="fa fa-plus"></i> Input</button>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <table width="100%" class="table table-striped table-bordered table-hover" id="dataRekap">
+                    <thead>
+                        <tr>
+                            <th>Nomor</th>
+                            <th>Sarpelkes</th>
+                            <th>Nomor wo</th>
+                            <th>Nama petugas</th>
+                            <th>Jumlah</th>
+                            <th>Tanggal terima</th>
+                            <th>Proses</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in data %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ i.rekap.sarpelkes }}</td>
+                            <td>{{ i.rekap.nomorwo }}</td>
+                            <td>{{ i.petugas }}</td>
+                            <td>{{ i.jumlah }}</td>
+                            <td>{{ i.tanggal.strftime("%d/%m/%Y") }}</td>
+                            <td>                                
+                                <a class="btn btn-xs btn-default btn-circle" title="Edit" href="{{ url_for('cetak.edit',id=i.nomor) }}"><i class="fa fa-edit"></i></a>
+                                <button class="btn btn-success btn-xs btn-circle" title="Hapus" data-toggle="modal" data-target="#edit{{ i.nomor }}"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-default btn-xs btn-circle" title="Hapus" data-toggle="modal" data-target="#hapus{{ i.nomor }}"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+
+                        <div id="edit{{ i.nomor }}" class="modal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Hapus nomor id :{{ i.nomor }}?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Form edit nyo gek disini!.</p>
+                                  </div>
+                                <div class="modal-footer">
+                                    <form action="{{ url_for('terima.edit',id=i.nomor) }}" method="POST">
+                                        <button type="submit" class="btn btn-primary">Hapus</button>
+                                    </form>                                      
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="hapus{{ i.nomor }}" class="modal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Hapus nomor id :{{ i.nomor }}?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="{{ url_for('terima.hapus',id=i.nomor) }}" method="POST">
+                                        <button type="submit" class="btn btn-primary">Hapus</button>
+                                    </form>                                      
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <!-- /.table-responsive -->                
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<!-- Modal tambah data -->
+<div id="forminput" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Tambah data baru</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('terima.input')}}" method="post">
+                    <div class="form-group">
+                        {{ form.sarpelkes.label() }}                                
+                        {% if form.sarpelkes.errors %}
+                            <div class="has-error">
+                                {{ form.sarpelkes(class="form-control") }}                                        
+                                {% for error in form.sarpelkes.errors  %}
+                                    <span class="control-label">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.sarpelkes(class="form-control", placeholder='Sarpelkes') }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.nomorwo.label() }}                                
+                        {% if form.nomorwo.errors %}
+                            <div class="has-error">
+                                {{ form.nomorwo(class="form-control") }}                                        
+                                {% for error in form.nomorwo.errors  %}
+                                    <span class="control-label">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.nomorwo(class="form-control", placeholder='No. wo') }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.petugas.label() }}                                
+                        {% if form.petugas.errors %}
+                            <div class="has-error">
+                                {{ form.petugas(class="form-control") }}                                        
+                                {% for error in form.petugas.errors  %}
+                                    <span class="control-label">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.petugas(class="form-control") }}
+                        {% endif %}
+                    </div>                           
+                    <div class="form-group">
+                        {{ form.tanggal.label() }}                                
+                        {% if form.tanggal.errors %}
+                            <div class="has-error">
+                                {{ form.tanggal(class="form-control") }}                                        
+                                {% for error in form.tanggal.errors  %}
+                                    <span class="control-label">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.tanggal(class="form-control") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.jumlah.label() }}                                
+                        {% if form.jumlah.errors %}
+                            <div class="has-error">
+                                {{ form.jumlah(class="form-control") }}                                        
+                                {% for error in form.jumlah.errors  %}
+                                    <span class="control-label">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.jumlah(class="form-control", placeholder='Jumlah') }}
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-dismiss="modal">Simpan</button>
+                <button type="cancel" class="btn btn-warning" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block jsTables %}
+    <!-- DataTables JavaScript -->
+    <script src="{{ url_for('static', filename='vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/datatables-plugins/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/datatables-responsive/dataTables.responsive.js') }}"></script>
+{% endblock jsTables %}
+
+{% block script %}
+    <script>
+        $(document).ready(function() {
+            $('#dataRekap').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+{% endblock script %}

@@ -10,7 +10,7 @@ mod = Blueprint('cetak',__name__,template_folder='templates')
 @mod.route('/cetak')
 def index():
     data = Cetak.query.order_by(Cetak.tanggal.desc()).all()
-    return render_template('log_cetak.html', data = data, title='Catatan', page='Cetak Per Petugas')
+    return render_template('log_cetak.html', data = data, title='Catatan', page='Cetak per-petugas')
 
 
 @mod.route('/cetak/input/<int:id>', methods=['GET','POST'])
