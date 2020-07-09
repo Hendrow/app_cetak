@@ -113,12 +113,12 @@
 <div id="forminput" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
+        <form action="{{ url_for('terima.index')}}" method="post" novalidate>
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Tambah data baru</h4>
             </div>
-            <div class="modal-body">
-                <form action="{{ url_for('terima.index')}}" method="post">
+            <div class="modal-body">                
                     {{ form.hidden_tag() }}
                     <div class="form-group">
                         {{ form.sarpelkes.label() }}                                
@@ -185,12 +185,15 @@
                             {{ form.jumlah(class="form-control", placeholder='Jumlah') }}
                         {% endif %}
                     </div>
-                </form>
-            </div>
+                
+            </div>            
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" data-dismiss="modal">Simpan</button>
-                <button type="cancel" class="btn btn-warning" data-dismiss="modal">Close</button>
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-primary") }}
+                    <button type="cancel" class="btn btn-warning" data-dismiss="modal">Close</button>
+                </div>                
             </div>
+        </form>
         </div>
     </div>
 </div>

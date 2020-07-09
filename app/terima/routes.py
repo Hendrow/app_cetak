@@ -25,7 +25,7 @@ def index():
     return render_template('log_terima.html', data=data, page='Terima laporan', title='Terima laporan', form=form)
 
 
-@mod.route('/terima/input')
+@mod.route('/terima/input', methods=['POST'])
 def input():
     form = InputForm()
     if form.validate_on_submit():

@@ -13,4 +13,5 @@ class InputForm(FlaskForm):
     )
     jumlah = StringField('Jumlah Cetak', validators=[DataRequired()])
     tanggal = DateField('Tanggal', validators=[DataRequired()])
+    submit = SubmitField('Submit')
 
