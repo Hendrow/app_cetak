@@ -118,7 +118,8 @@
                 <h4 class="modal-title">Tambah data baru</h4>
             </div>
             <div class="modal-body">
-                <form action="{{ url_for('terima.input')}}" method="post">
+                <form action="{{ url_for('terima.index')}}" method="post">
+                    {{ form.hidden_tag() }}
                     <div class="form-group">
                         {{ form.sarpelkes.label() }}                                
                         {% if form.sarpelkes.errors %}
