@@ -20,7 +20,11 @@ class FormEdit(FlaskForm):
     # ilham = StringField('Lap. Ilham', validators=[DataRequired()])
     # sandra = StringField('Lap. Sandra', validators=[DataRequired()])
     # total = StringField('Total', validators=[DataRequired()])
-    keterangan = StringField('Keterangan', validators=[DataRequired()])
+    
+    keterangan = SelectField(
+        'Keterangan',
+        choices=[('sudah', 'Sudah lengkap'), ('belum', 'Belum lengkap')]
+    )
     submit = SubmitField('Update')
 
 

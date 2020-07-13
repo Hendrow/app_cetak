@@ -25,7 +25,7 @@ def input():
         sandra = "-"
         ilham = "-"
         total= 0
-        keterangan = "-"
+        keterangan = "belum"
 
         # Simpan pada database
         data = Rekap(sarpelkes=sarpelkes, nomorwo=nomorwo, tahun=tahun, agung=agung, andi=andi, azizil=azizil, ilham=ilham, sandra=sandra, total=total, keterangan=keterangan)

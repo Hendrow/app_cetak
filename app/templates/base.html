@@ -47,7 +47,11 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                <li><a href="{{ url_for('auth.login') }}"><i class="fa fa-sign-out fa-fw"></i> Login</a></li>                
+                {% if 'username' in session %}
+                    <li><a href="{{ url_for('auth.logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('auth.login') }}"><i class="fa fa-sign-in fa-fw"></i> Login</a></li> 
+                {% endif %}                               
             </ul>
             <!-- /.navbar-top-links -->
 
@@ -56,13 +60,16 @@
                     <ul class="nav" id="side-menu">
                         <li>
                             <a href="{{ url_for('rekap.index') }}"><i class="fa fa-home fa-fw"></i> Progress</a>
-                        </li>  
+                        </li>
+                        {% if 'username' in session %}
                         <li>
                             <a href="{{ url_for('cetak.index') }}"><i class="fa fa-print fa-fw"></i> Catatan</a>
                         </li>
                         <li>
                             <a href="{{ url_for('terima.index') }}"><i class="fa fa-archive fa-fw"></i> Terima laporan</a>
-                        </li>                       
+                        </li>                            
+                        {% endif %} 
+                                               
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

@@ -42,10 +42,49 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <div>
+                            {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }} alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+                        <form role="form" action="" method="POST" novalidate>
                             <fieldset>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                {{ form.hidden_tag() }}
+                                <div class="form-group">                              
+                                    {% if form.username.errors %}
+                                        <div class="has-error">
+                                            {{ form.username(class="form-control") }}                                        
+                                            {% for error in form.username.errors  %}
+                                                <span class="control-label">{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.username(class="form-control", placeholder='Username') }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">                              
+                                    {% if form.password.errors %}
+                                        <div class="has-error">
+                                            {{ form.password(class="form-control") }}                                        
+                                            {% for error in form.password.errors  %}
+                                                <span class="control-label">{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.password(class="form-control", placeholder='Password') }}
+                                    {% endif %}
+                                </div>
+                                {{ form.login(class="btn btn-lg btn-success btn-block") }}
+
+                                <!-- <div class="form-group">
+                                    <input class="form-control" placeholder="Username" name="username" type="username" autofocus>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
@@ -54,9 +93,10 @@
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                     </label>
-                                </div>
+                                </div> -->
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="#login" class="btn btn-lg btn-success btn-block">Login</a>
+                                <!-- <button type="submit" class="btn btn-lg btn-success btn-block">Login</button> -->
+
                             </fieldset>
                         </form>
                     </div>

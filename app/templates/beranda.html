@@ -25,9 +25,12 @@
         </div>            
         <div class="panel panel-default">            
             <div class="panel-heading">
-                Tables
+                Data Laporan
             </div>
-            <a href="{{ url_for('rekap.input') }}" class="btn btn-xl btn-default" style="margin: 10px 10px 0 10px;"><i class="fa fa-plus"></i> Input data</a>
+            {% if 'username' in session %}
+            <a href="{{ url_for('rekap.input') }}" class="btn btn-xl btn-default" style="margin: 10px 10px 0 10px;"><i class="fa fa-plus"></i> Input data</a>  
+            {% endif %}
+            
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataRekap">
@@ -42,10 +45,12 @@
                             <th>Azizil</th>
                             <th>Ilham</th>
                             <th>Sandra</th>
-                            <th>Total</th>
-                            <th>Keterangan</th>
+                            <th>Total</th>                            
                             <th>Tgl.Kirim</th>
-                            <th>Proses</th>
+                            <th>Ket.</th>
+                            {% if 'username' in session %}                            
+                            <th>Proses</th>   
+                            {% endif %}                            
                         </tr>
                     </thead>
                     <tbody>
@@ -60,19 +65,29 @@
                             <td>{{ i.azizil }}</td>
                             <td>{{ i.ilham }}</td>
                             <td>{{ i.sandra }}</td>
-                            <td>{{ i.total }}</td>
-                            <td>{{ i.keterangan }}</td>
+                            <td>{{ i.total }}</td>                            
                             {% if i.tgl_kirim==None %}
-                                <td style="color:brown;">Belum kirim</td>
+                                <td style="color:brown;">None</td>
                             {% else %}
                                 <td style="color:green;">{{ i.tgl_kirim.strftime("%d/%m/%Y") }}</td>
-                            {% endif %}                            
+                            {% endif %}
+
+                            {% if i.keterangan=="belum" %}
+                                <td><button class="btn btn-xs btn-danger btn-circle" title="Belum lengkap"></button></td>
+
+                            {% else %}
+                                <td><button class="btn btn-xs btn-success btn-circle" title="Sudah lengkap"></button></td>
+                            {% endif %}
+
+                            {% if 'username' in session %}                            
                             <td>
                                 <a class="btn btn-xs btn-default btn-circle" title="Catat cetak per petugas" href="{{ url_for('cetak.cetak',id=i.nomor) }}"><i class="fa fa-file-archive-o"></i></a>
                                 <a class="btn btn-xs btn-default btn-circle" title="Isi tanggal kirim" href="{{ url_for('rekap.tanggal',id=i.nomor) }}"><i class="fa fa-send"></i></a>                                
                                 <a class="btn btn-xs btn-default btn-circle" title="Edit Rekap" href="{{ url_for('rekap.edit',id=i.nomor) }}"><i class="fa fa-edit"></i></a>
                                 <!-- <button class="btn btn-default btn-xs btn-circle" title="Hapus Data" data-toggle="modal" data-target="#hapus{{ i.nomor }}"><i class="fa fa-trash"></i></button> -->
-                            </td>
+                            </td>   
+                            {% endif %}
+                            
                         </tr>
 
                         <div id="hapus{{ i.nomor }}" class="modal" tabindex="-1" role="dialog">
