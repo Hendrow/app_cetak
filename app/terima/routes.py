@@ -25,13 +25,13 @@ def input():
         dt = Terima(sarpelkes=sarpelkes, nomorwo=nomorwo, petugas=petugas,jumlah=jumlah,tanggal=tanggal)
         db.session.add(dt)
         db.session.commit()
-        flash('Data berhasil disimpan','Primary')
+        flash('Data berhasil disimpan','success')
         return redirect(url_for('terima.index'))
 
     return render_template('input_terima.html', page='Input data', title='Terima laporan', form=form)
 
 
-@mod.route('/terima/edit/<int:id>')
+@mod.route('/terima/<int:id>/edit', methods=['GET','POST'])
 def edit(id):
     form = EditForm()
     t = Terima.query.get_or_404(id)
@@ -42,8 +42,8 @@ def edit(id):
         t.jumlah = form.jumlah.data
         t.tanggal = form.tanggal.data
         db.session.commit()
-        flash('Data berhasil di update!', 'Success')
-        return redirect('terima.index')
+        flash('Data berhasil di update!', 'info')
+        return redirect(url_for('terima.index'))
 
     form.sarpelkes.data = t.sarpelkes
     form.nomorwo.data = t.nomorwo
@@ -54,6 +54,11 @@ def edit(id):
     return render_template('edit_terima.html', form=form, title='Terima laporan', page='Edit data')
 
 
-@mod.route('/terima/edit/<int:id>')
+@mod.route('/terima/<int:id>/hapus', methods=['POST'])
 def hapus(id):
-    pass
+    t = Terima.query.get_or_404(id)
+    if t:
+        db.session.delete(t)
+        db.session.commit()
+        flash("Data berhasil di hapus!","warning")
+        return redirect(url_for('terima.index'))

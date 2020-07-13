@@ -15,8 +15,9 @@
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">
-                    {{ message }}
+                    <div class="alert alert-{{ category }} alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ message }}
                     </div>
                 {% endfor %}
             {% endif %}
@@ -49,7 +50,7 @@
                             <td>{{ i.nomorwo }}</td>
                             <td>{{ i.petugas }}</td>
                             <td>{{ i.jumlah }}</td>
-                            <td>{{ i.tanggal.strftime("%d/%m/%Y") }}</td>
+                            <td>{{ i.tanggal.strftime("%d %B %Y") }}</td>
                             <td>                                
                                 <a class="btn btn-xs btn-default btn-circle" title="Edit" href="{{ url_for('terima.edit',id=i.nomor) }}"><i class="fa fa-edit"></i></a>
                                 <button class="btn btn-default btn-xs btn-circle" title="Hapus" data-toggle="modal" data-target="#hapus{{ i.nomor }}"><i class="fa fa-trash"></i></button>
