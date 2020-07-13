@@ -81,6 +81,11 @@
                                         {{ form.password(class="form-control", placeholder='Password') }}
                                     {% endif %}
                                 </div>
+                                <div class="checkbox">
+                                    <label>
+                                    {{ form.remember(value="Remember Me") }}
+                                    </label>
+                                </div>
                                 {{ form.login(class="btn btn-lg btn-success btn-block") }}
 
                                 <!-- <div class="form-group">
