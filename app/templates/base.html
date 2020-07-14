@@ -48,6 +48,12 @@
 
             <ul class="nav navbar-top-links navbar-right">
                 {% if 'username' in session %}
+                <strong>Hai, {{ session['username'] }}</strong>
+                {% else %}
+                <strong>Hello, Guest</strong>
+                {% endif %}
+                
+                {% if 'username' in session %}
                     <li><a href="{{ url_for('auth.logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                 {% else %}
                     <li><a href="{{ url_for('auth.login') }}"><i class="fa fa-sign-in fa-fw"></i> Login</a></li> 

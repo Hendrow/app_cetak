@@ -28,7 +28,7 @@
                 Data Laporan
             </div>
             {% if 'username' in session %}
-            <a href="{{ url_for('rekap.input') }}" class="btn btn-xl btn-default" style="margin: 10px 10px 0 10px;"><i class="fa fa-plus"></i> Input data</a>  
+            <a href="{{ url_for('rekap.input') }}" class="btn btn-xl btn-primary" style="margin: 10px 10px 0 10px;"><i class="fa fa-plus"></i> Input data baru</a>  
             {% endif %}
             
             <!-- /.panel-heading -->
@@ -81,9 +81,10 @@
 
                             {% if 'username' in session %}                            
                             <td>
-                                <a class="btn btn-xs btn-default btn-circle" title="Catat cetak per petugas" href="{{ url_for('cetak.cetak',id=i.nomor) }}"><i class="fa fa-file-archive-o"></i></a>
-                                <a class="btn btn-xs btn-default btn-circle" title="Isi tanggal kirim" href="{{ url_for('rekap.tanggal',id=i.nomor) }}"><i class="fa fa-send"></i></a>                                
-                                <a class="btn btn-xs btn-default btn-circle" title="Edit Rekap" href="{{ url_for('rekap.edit',id=i.nomor) }}"><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-xs btn-info btn-circle" title="Edit data rekap" href="{{ url_for('rekap.edit',id=i.nomor) }}"><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-xs btn-success btn-circle" title="Catat hasil cetak" href="{{ url_for('cetak.cetak',id=i.nomor) }}"><i class="fa fa-file-archive-o"></i></a>
+                                <a class="btn btn-xs btn-warning btn-circle" title="Tambah tgl. kirim" href="{{ url_for('rekap.tanggal',id=i.nomor) }}"><i class="fa fa-send"></i></a>                               
+                                
                                 <!-- <button class="btn btn-default btn-xs btn-circle" title="Hapus Data" data-toggle="modal" data-target="#hapus{{ i.nomor }}"><i class="fa fa-trash"></i></button> -->
                             </td>   
                             {% endif %}
@@ -116,6 +117,9 @@
             <!-- /.panel-body -->
         </div>
         <!-- /.panel -->
+        Keterangan Laporan :<br>
+        <button class="btn btn-circle btn-success btn-xs"></button> Sudah lengkap
+        <button class="btn btn-circle btn-danger btn-xs"></button> Belum lengkap
     </div>
     <!-- /.col-lg-12 -->
 </div>

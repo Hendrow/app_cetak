@@ -25,7 +25,7 @@
         </div>            
         <div class="panel panel-default">            
             <div class="panel-heading">
-                Tables
+                Catatan cetak laporan
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
@@ -51,8 +51,8 @@
                             <td>{{ i.jumlah }}</td>
                             <td>{{ i.tanggal.strftime("%d %B %Y") }}</td>
                             <td>                                
-                                <a class="btn btn-xs btn-default btn-circle" title="Edit" href="{{ url_for('cetak.edit',id=i.nomor) }}"><i class="fa fa-edit"></i></a>
-                                <button class="btn btn-default btn-xs btn-circle" title="Hapus" data-toggle="modal" data-target="#hapus{{ i.nomor }}"><i class="fa fa-trash"></i></button>
+                                <a class="btn btn-xs btn-success btn-circle" title="Edit" href="{{ url_for('cetak.edit',id=i.nomor) }}"><i class="fa fa-edit"></i></a>
+                                <button class="btn btn-danger btn-xs btn-circle" title="Hapus" data-toggle="modal" data-target="#hapus{{ i.nomor }}"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
 
@@ -69,7 +69,7 @@
                                         <form action="{{ url_for('cetak.hapus',id=i.nomor) }}" method="POST">
                                             <button type="submit" class="btn btn-primary">Hapus</button>
                                         </form>                                      
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                      <button type="button" class="btn btn-warning" data-dismiss="modal">Tutup</button>
                                     </div>
                                   </div>
                                 </div>

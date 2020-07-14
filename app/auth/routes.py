@@ -7,7 +7,7 @@ mod = Blueprint('auth', __name__, static_folder='static', template_folder='templ
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        if form.username.data == "hendro" and form.password.data =="admin123":
+        if form.username.data == "hendro" and form.password.data =="adminadmin09":
             session['username']= form.username.data
             return redirect(url_for('rekap.index'))
         else:

@@ -10,7 +10,7 @@ mod = Blueprint('cetak',__name__,template_folder='templates')
 @mod.route('/cetak')
 def index():
     data = Cetak.query.order_by(Cetak.tanggal.desc()).all()
-    return render_template('log_cetak.html', data = data, title='Catatan', page='Cetak per-petugas')
+    return render_template('log_cetak.html', data = data, title='Catatan', page='Catatan')
 
 
 @mod.route('/cetak/input/<int:id>', methods=['GET','POST'])
@@ -68,7 +68,7 @@ def cetak(id):
         flash('Pencatatan cetak laporan berhasil!','info')
         return redirect(url_for('cetak.index'))
 
-    return render_template('cetak.html',form=form, title='Cetak Laporan', page='Catatan')
+    return render_template('input_cetak.html',form=form, title='Cetak Laporan', page='Catatan')
 
 
 @mod.route('/cetak/edit/<int:id>', methods=['GET','POST'])

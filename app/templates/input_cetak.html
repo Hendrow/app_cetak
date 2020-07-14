@@ -13,47 +13,47 @@
                             <form action="" method="post" novalidate>
                                 {{ form.hidden_tag() }}
                                 <div class="form-group">
-                                    {{ form.sarpelkes.label(class="control-label") }}                                
-                                    {% if form.sarpelkes.errors %}
+                                    {{ form.petugas.label(class="control-label") }}                                
+                                    {% if form.petugas.errors %}
                                         <div class="has-error">
-                                            {{ form.sarpelkes(class="form-control") }}                                        
-                                            {% for error in form.sarpelkes.errors  %}
+                                            {{ form.petugas(class="form-control") }}                                        
+                                            {% for error in form.petugas.errors  %}
                                                 <span class="control-label">{{ error }}</span>
                                             {% endfor %}
                                         </div>
                                     {% else %}
-                                        {{ form.sarpelkes(class="form-control", placeholder='Sarpelkes') }}
+                                        {{ form.petugas(class="form-control", placeholder='Nama Petugas') }}
                                     {% endif %}
                                 </div>
                                 <div class="form-group">
-                                    {{ form.nomorwo.label() }}                                
-                                    {% if form.nomorwo.errors %}
+                                    {{ form.jumlah.label() }}                                
+                                    {% if form.jumlah.errors %}
                                         <div class="has-error">    
-                                            {{ form.nomorwo(class="form-control") }}                                        
-                                            {% for error in form.nomorwo.errors  %}
+                                            {{ form.jumlah(class="form-control") }}                                        
+                                            {% for error in form.jumlah.errors  %}
                                                 <span class="control-label">{{ error }}</span>
                                             {% endfor %}
                                         </div>
                                     {% else %}
-                                        {{ form.nomorwo(class="form-control" , placeholder='Nomor Wo') }}
+                                        {{ form.jumlah(class="form-control" , placeholder='Jumlah') }}
                                     {% endif %}
                                 </div>
                                 <div class="form-group">
-                                    {{ form.tahun.label() }}                                
-                                    {% if form.tahun.errors %}
+                                    {{ form.tanggal.label() }}                                
+                                    {% if form.tanggal.errors %}
                                         <div class="has-error">
-                                            {{ form.tahun(class="form-control") }}                                        
-                                            {% for error in form.tahun.errors  %}
+                                            {{ form.tanggal(class="form-control") }}                                        
+                                            {% for error in form.tanggal.errors  %}
                                                 <span class="control-label">{{ error }}</span>
                                             {% endfor %}
                                         </div>
                                     {% else %}
-                                        {{ form.tahun(class="form-control", placeholder='ex: 2020') }}
+                                        {{ form.tanggal(class="form-control", placeholder='ex: 2020') }}
                                     {% endif %}
                                 </div>                                
                                 <div class="form-group">
                                     {{ form.submit(class="btn btn-primary") }}
-                                    <a href="{{ url_for('rekap.index') }}" class="btn btn-warning">Cancel</a>
+                                    <a href="{{ url_for('cetak.index') }}" class="btn btn-warning">Cancel</a>
                                 </div>
                             </form>
                         </div>

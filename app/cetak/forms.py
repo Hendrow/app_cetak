@@ -11,7 +11,7 @@ class FormCetak(FlaskForm):
         choices=[('agung', 'M. Agung'), ('andi', 'Andi Purba'), ('azizil', 'Azizil T Putra'), ('ilham', 'M Ilham'), ('sandra', 'Sandra Monika')]
     )
     tanggal = DateField('Tanggal', validators=[DataRequired()])
-    submit=SubmitField('Submit')
+    submit=SubmitField('Simpan')
 
 
 class FormEdit(FlaskForm):
