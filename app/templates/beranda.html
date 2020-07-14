@@ -45,9 +45,9 @@
                             <th>Azizil</th>
                             <th>Ilham</th>
                             <th>Sandra</th>
-                            <th>Total</th>                            
-                            <th>Tgl.Kirim</th>
-                            <th>Ket.</th>
+                            <th>Total</th>
+                            <th>Ket.</th>                           
+                            <th>Tgl.Kirim</th>                            
                             {% if 'username' in session %}                            
                             <th>Proses</th>   
                             {% endif %}                            
@@ -65,18 +65,18 @@
                             <td>{{ i.azizil }}</td>
                             <td>{{ i.ilham }}</td>
                             <td>{{ i.sandra }}</td>
-                            <td>{{ i.total }}</td>                            
+                            <td>{{ i.total }}</td>
+
+                            {% if i.keterangan=="belum" %}
+                                <td><button class="btn btn-xs btn-danger btn-circle" title="Belum lengkap"></button></td>
+                            {% else %}
+                                <td><button class="btn btn-xs btn-success btn-circle" title="Sudah lengkap"></button></td>
+                            {% endif %}
+
                             {% if i.tgl_kirim==None %}
                                 <td style="color:brown;">None</td>
                             {% else %}
                                 <td style="color:green;">{{ i.tgl_kirim.strftime("%d/%m/%Y") }}</td>
-                            {% endif %}
-
-                            {% if i.keterangan=="belum" %}
-                                <td><button class="btn btn-xs btn-danger btn-circle" title="Belum lengkap"></button></td>
-
-                            {% else %}
-                                <td><button class="btn btn-xs btn-success btn-circle" title="Sudah lengkap"></button></td>
                             {% endif %}
 
                             {% if 'username' in session %}                            
