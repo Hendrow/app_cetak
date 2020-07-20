@@ -3,9 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'dpf98a8034kqh498370teqiry4__9746yh'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cetak.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config.from_pyfile('config.py')
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
