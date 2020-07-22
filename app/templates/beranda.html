@@ -82,7 +82,7 @@
                             {% if 'username' in session %}                            
                             <td>
                                 <a class="btn btn-xs btn-info btn-circle" title="Edit data rekap" href="{{ url_for('rekap.edit',id=i.nomor) }}"><i class="fa fa-edit"></i></a>
-                                <a class="btn btn-xs btn-success btn-circle" title="Catat hasil cetak" href="{{ url_for('cetak.cetak',id=i.nomor) }}"><i class="fa fa-file-archive-o"></i></a>
+                                <a class="btn btn-xs btn-success btn-circle" title="Catat hasil cetak" href="{{ url_for('catatan.cetak',id=i.nomor) }}"><i class="fa fa-file-archive-o"></i></a>
                                 <a class="btn btn-xs btn-warning btn-circle" title="Tambah tgl. kirim" href="{{ url_for('rekap.tanggal',id=i.nomor) }}"><i class="fa fa-send"></i></a>                               
                                 
                                 <!-- <button class="btn btn-default btn-xs btn-circle" title="Hapus Data" data-toggle="modal" data-target="#hapus{{ i.nomor }}"><i class="fa fa-trash"></i></button> -->
