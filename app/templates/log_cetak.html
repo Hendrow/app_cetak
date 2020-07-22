@@ -51,7 +51,7 @@
                             <td>{{ i.jumlah }}</td>
                             <td>{{ i.tanggal.strftime("%d %B %Y") }}</td>
                             <td>                                
-                                <a class="btn btn-xs btn-success btn-circle" title="Edit" href="{{ url_for('cetak.edit',id=i.nomor) }}"><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-xs btn-success btn-circle" title="Edit" href="{{ url_for('catatan.edit',id=i.nomor) }}"><i class="fa fa-edit"></i></a>
                                 <button class="btn btn-danger btn-xs btn-circle" title="Hapus" data-toggle="modal" data-target="#hapus{{ i.nomor }}"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
@@ -66,7 +66,7 @@
                                       </button>
                                     </div>
                                     <div class="modal-footer">
-                                        <form action="{{ url_for('cetak.hapus',id=i.nomor) }}" method="POST">
+                                        <form action="{{ url_for('catatan.hapus',id=i.nomor) }}" method="POST">
                                             <button type="submit" class="btn btn-primary">Hapus</button>
                                         </form>                                      
                                       <button type="button" class="btn btn-warning" data-dismiss="modal">Tutup</button>

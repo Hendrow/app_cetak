@@ -1,19 +1,19 @@
 from flask import Blueprint, render_template, redirect, request, url_for, flash
 from app import db
 from app.models import Rekap, Cetak
-from app.cetak.forms import FormCetak, FormEdit
+from app.catatan.forms import FormCetak, FormEdit
 
 
-mod = Blueprint('cetak',__name__,template_folder='templates')
+mod = Blueprint('catatan',__name__,template_folder='templates')
 
 
-@mod.route('/cetak')
+@mod.route('/catatan')
 def index():
     data = Cetak.query.order_by(Cetak.tanggal.desc()).all()
     return render_template('log_cetak.html', data = data, title='Catatan', page='Catatan')
 
 
-@mod.route('/cetak/input/<int:id>', methods=['GET','POST'])
+@mod.route('/catatan/input/<int:id>', methods=['GET','POST'])
 def cetak(id):
     form = FormCetak()      
     if form.validate_on_submit():
@@ -66,12 +66,12 @@ def cetak(id):
          
         db.session.commit()
         flash('Pencatatan cetak laporan berhasil!','info')
-        return redirect(url_for('cetak.index'))
+        return redirect(url_for('catatan.index'))
 
     return render_template('input_cetak.html',form=form, title='Cetak Laporan', page='Catatan')
 
 
-@mod.route('/cetak/edit/<int:id>', methods=['GET','POST'])
+@mod.route('/catatan/<int:id>/edit', methods=['GET','POST'])
 def edit(id):
     pass
     form = FormEdit()
@@ -134,7 +134,7 @@ def edit(id):
             c.jumlah = form.jumlah.data
             db.session.commit()
             flash('Data berhasil di update!','info')
-            return redirect(url_for('cetak.index'))
+            return redirect(url_for('catatan.index'))
 
     form.petugas.data = c.petugas
     form.jumlah.data = c.jumlah
@@ -142,7 +142,7 @@ def edit(id):
     return render_template('edit_cetak.html', form=form, page='Edit', title='Edit')
 
 
-@mod.route('/cetak/hapus/<int:id>', methods=['GET','POST'])
+@mod.route('/catatan/<int:id>/hapus', methods=['GET','POST'])
 def hapus(id):
     cetak = Cetak.query.get_or_404(id)
     if cetak:
@@ -171,4 +171,4 @@ def hapus(id):
             db.session.delete(cetak)
             db.session.commit()
             flash('Data sudah dihapus!','info')
-            return redirect(url_for('cetak.index'))
+            return redirect(url_for('catatan.index'))
