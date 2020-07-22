@@ -22,24 +22,24 @@ def input():
             if rekap.nomorwo == form.nomorwo.data:
                 flash(f'Data {rekap.sarpelkes} dengan no.wo {rekap.nomorwo} sudah ada! ditahun {rekap.tahun}', 'danger')
                 return redirect(url_for('rekap.index'))
-            else:
-                sarpelkes = form.sarpelkes.data
-                nomorwo = form.nomorwo.data
-                tahun = form.tahun.data
-                agung = "-"
-                andi = "-"
-                azizil = "-"
-                sandra = "-"
-                ilham = "-"
-                total= 0
-                keterangan = "belum"
+            
+        sarpelkes = form.sarpelkes.data
+        nomorwo = form.nomorwo.data
+        tahun = form.tahun.data
+        agung = "-"
+        andi = "-"
+        azizil = "-"
+        sandra = "-"
+        ilham = "-"
+        total= 0
+        keterangan = "belum"
 
-                # Simpan pada database
-                data = Rekap(sarpelkes=sarpelkes, nomorwo=nomorwo, tahun=tahun, agung=agung, andi=andi, azizil=azizil, ilham=ilham, sandra=sandra, total=total, keterangan=keterangan)
-                db.session.add(data)
-                db.session.commit()
-                flash('Data berhasil disimpan','success')
-                return redirect(url_for('rekap.index'))
+        # Simpan pada database
+        data = Rekap(sarpelkes=sarpelkes, nomorwo=nomorwo, tahun=tahun, agung=agung, andi=andi, azizil=azizil, ilham=ilham, sandra=sandra, total=total, keterangan=keterangan)
+        db.session.add(data)
+        db.session.commit()
+        flash('Data berhasil disimpan','success')
+        return redirect(url_for('rekap.index'))
        
     return render_template('input_rekap.html', title='Tambah data', page='Tambah data', form=form)
 
