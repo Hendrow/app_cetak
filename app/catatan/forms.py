@@ -8,7 +8,7 @@ class FormCetak(FlaskForm):
     jumlah = StringField('Jumlah Cetak', validators=[DataRequired()])
     petugas = SelectField(
         'Nama petugas',
-        choices=[('agung', 'M. Agung'), ('andi', 'Andi Purba'), ('azizil', 'Azizil T Putra'), ('ilham', 'M Ilham'), ('sandra', 'Sandra Monika')]
+        choices=[('None', '--Pilih petugas--'),('agung', 'M. Agung'), ('andi', 'Andi Purba'), ('azizil', 'Azizil T Putra'), ('ilham', 'M Ilham'), ('sandra', 'Sandra Monika')]
     )
     tanggal = DateField('Tanggal', validators=[DataRequired()])
     submit=SubmitField('Simpan')
