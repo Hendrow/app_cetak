@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template,redirect, url_for, flash
-from app import db
-from app.models import Terima
+from aplikasi import db
+from aplikasi.models import Terima
 from .forms import InputForm, EditForm
 
 mod = Blueprint('terima',__name__)

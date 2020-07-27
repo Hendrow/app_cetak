@@ -1,5 +1,5 @@
 from datetime import datetime
-from app import db
+from aplikasi import db
 
 class Rekap(db.Model):
     nomor = db.Column(db.Integer, primary_key=True)

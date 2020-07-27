@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, request, url_for, flash
-from app import db
-from app.models import Rekap, Cetak
-from app.catatan.forms import FormCetak, FormEdit
+from aplikasi import db
+from aplikasi.models import Rekap, Cetak
+from aplikasi.catatan.forms import FormCetak, FormEdit
 
 
 mod = Blueprint('catatan',__name__,template_folder='templates')

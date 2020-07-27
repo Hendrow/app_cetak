@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, request, url_for, flash
-from app import db
-from app.rekap.forms import FormInput, FormEdit, FormTanggal
-from app.models import Rekap, Cetak
+from aplikasi import db
+from aplikasi.rekap.forms import FormInput, FormEdit, FormTanggal
+from aplikasi.models import Rekap, Cetak
 
 
 mod = Blueprint('rekap',__name__,template_folder='templates')
