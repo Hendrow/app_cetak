@@ -60,11 +60,36 @@
                             <td>{{ i.sarpelkes }}</td>
                             <td>{{ i.nomorwo }}</td>
                             <td>{{ i.tahun }}</td>
-                            <td>{{ i.agung }}</td>
-                            <td>{{ i.andi }}</td>
-                            <td>{{ i.azizil }}</td>
-                            <td>{{ i.ilham }}</td>
-                            <td>{{ i.sandra }}</td>
+
+                            {% if i.agung == 0 %}
+                                <td>-</td>
+                            {% else %}
+                                <td>{{ i.agung }}</td>
+                            {% endif %}
+
+                            {% if i.andi == 0 %}
+                                <td>-</td>
+                            {% else %}
+                                <td>{{ i.andi }}</td>
+                            {% endif %}
+                            
+                            {% if i.azizil == 0 %}
+                                <td>-</td>
+                            {% else %}
+                                <td>{{ i.azizil }}</td>
+                            {% endif %}
+
+                            {% if i.ilham == 0 %}
+                                <td>-</td>
+                            {% else %}
+                                <td>{{ i.ilham }}</td>
+                            {% endif %}
+
+                            {% if i.sandra == 0 %}
+                                <td>-</td>
+                            {% else %}
+                                <td>{{ i.sandra }}</td>
+                            {% endif %}
                             <td>{{ i.total }}</td>
 
                             {% if i.keterangan=="belum" %}

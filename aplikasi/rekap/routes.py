@@ -26,11 +26,11 @@ def input():
         sarpelkes = form.sarpelkes.data
         nomorwo = form.nomorwo.data
         tahun = form.tahun.data
-        agung = "-"
-        andi = "-"
-        azizil = "-"
-        sandra = "-"
-        ilham = "-"
+        agung = 0
+        andi = 0
+        azizil = 0
+        sandra = 0
+        ilham = 0
         total= 0
         keterangan = "belum"
 
