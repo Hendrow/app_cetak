@@ -3,8 +3,8 @@ from aplikasi import db
 
 class Rekap(db.Model):
     nomor = db.Column(db.Integer, primary_key=True)
-    sarpelkes = db.Column(db.String(55), nullable=False)
-    nomorwo = db.Column(db.String(8), nullable=False)
+    sarpelkes = db.Column(db.String(100), nullable=False)
+    nomorwo = db.Column(db.String(15), nullable=False)
     tahun = db.Column(db.Integer)
     agung = db.Column(db.Integer)
     andi = db.Column(db.Integer)
@@ -33,8 +33,8 @@ class Terima(db.Model):
     nomor = db.Column(db.Integer, primary_key=True)
     tanggal = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     jumlah = db.Column(db.Integer)
-    sarpelkes = db.Column(db.String(55), nullable=False)
-    nomorwo = db.Column(db.String(8), nullable=False)
+    sarpelkes = db.Column(db.String(100), nullable=False)
+    nomorwo = db.Column(db.String(15), nullable=False)
     petugas = db.Column(db.String(25))
 
     def __repr__(self):
